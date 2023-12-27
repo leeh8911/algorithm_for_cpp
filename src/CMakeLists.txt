@@ -1,0 +1,7 @@
+file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+
+add_library(${LIB_NAME} ${SRC_FILES})
+
+target_include_directories(${LIB_NAME} PUBLIC
+    ${PROJECT_SOURCE_DIR}/src
+)
