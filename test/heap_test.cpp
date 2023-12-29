@@ -38,8 +38,7 @@ TEST(HeapTest, MaxHeapCase) {
 }
 
 TEST(HeapTest, MinHeapCase) {
-    algorithm::Heap<int64_t, std::vector<int64_t>, std::greater<int64_t>>
-        min_heap;
+    algorithm::Heap<int64_t, std::vector<int64_t>, std::greater<>> min_heap;
 
     min_heap.Emplace(5);
     min_heap.Emplace(3);

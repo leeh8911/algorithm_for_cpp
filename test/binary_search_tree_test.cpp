@@ -8,7 +8,7 @@
 ///
 ///
 
-#include "..\src\tree\binary_search_tree.h"
+#include "tree/binary_search_tree.h"
 
 #include <gtest/gtest.h>
 
