@@ -14,7 +14,7 @@
 
 #include <cstdint>
 
-TEST(BinarySearchTree, FindValueCase) {
+TEST(BinarySearchTreeTest, FindValueCase) {
     algorithm::BinarySearchTree<int64_t> bst;
     bst.Insert(5);
     bst.Insert(3);
