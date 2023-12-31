@@ -55,6 +55,51 @@ void MergeSort(typename Container::iterator begin,
 
     return;
 }
+
+template <typename Container, typename Compare>
+typename Container::iterator Partition(typename Container::iterator begin,
+                                       typename Container::iterator last) {
+    std::cout << "Partition: \n";
+    const auto pivot_value = *begin;
+    auto left_iter = begin + 1;
+    auto right_iter = last;
+
+    while (true) {
+        while (!Compare()(pivot_value, *left_iter) &&
+               std::distance(left_iter, right_iter) > 0) {
+            ++left_iter;
+        }
+        while (Compare()(pivot_value, *right_iter) &&
+               distance(left_iter, right_iter) > 0) {
+            --right_iter;
+        }
+
+        if (left_iter == right_iter) {
+            break;
+        }
+
+        std::iter_swap(left_iter, right_iter);
+    }
+    if (Compare()(*right_iter, pivot_value)) {
+        std::iter_swap(begin, right_iter);
+    }
+
+    return right_iter;
+}
+template <typename Container,
+          typename Compare = std::less<typename Container::value_type>>
+void QuickSort(typename Container::iterator begin,
+               typename Container::iterator last) {
+    auto size = std::distance(begin, last) + 1;
+
+    if (size <= 1) {
+        return;
+    }
+    auto partition_iter = Partition<Container, Compare>(begin, last);
+
+    QuickSort<Container, Compare>(begin, partition_iter - 1);
+    QuickSort<Container, Compare>(partition_iter, last);
+}
 }  // namespace algorithm
 
 #endif  // SRC_DIVID_AND_CONQUER_SORT_H_
