@@ -31,11 +31,6 @@ TEST(SortTest, MergeSortCase) {
 TEST(SortTest, QuickSortCase) {
     std::vector<int64_t> v{1, 5, 9, 3, 7, 11, 46, 84, 23, 65, 70, 26};
 
-    std::cout << "QuickSortCase\n";
-    for (const auto& elm : v) {
-        std::cout << elm << " ";
-    }
-    std::cout << "\n";
     algorithm::QuickSort<decltype(v)>(v.begin(), v.end() - 1);
 
     auto it = v.begin();

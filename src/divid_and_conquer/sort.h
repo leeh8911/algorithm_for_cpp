@@ -59,7 +59,6 @@ void MergeSort(typename Container::iterator begin,
 template <typename Container, typename Compare>
 typename Container::iterator Partition(typename Container::iterator begin,
                                        typename Container::iterator last) {
-    std::cout << "Partition: \n";
     const auto pivot_value = *begin;
     auto left_iter = begin + 1;
     auto right_iter = last;
