@@ -26,6 +26,7 @@ std::ostream& operator<<(std::ostream& os, const Container& container) {
 
     return os;
 }
+
 template <
     typename Container,
     std::enable_if_t<test_util::is_container<Container>::value, bool> = true>

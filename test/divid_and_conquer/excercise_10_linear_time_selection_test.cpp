@@ -13,6 +13,7 @@
 
 #include <gtest/gtest.h>
 
+#include <iostream>
 #include <vector>
 
 #include "divid_and_conquer/sort.h"
@@ -27,12 +28,14 @@ TEST(LinearTimeSelectionTest, SampleCase) {
     auto v_copy = v;
 
     auto result = algorithm::LinearTimeSelection<std::vector<int64_t>>(
-        v.begin(), v.end(), nth);
+        v.begin(), v.end() - 1, nth);
 
     algorithm::QuickSort<std::vector<int64_t>>(v_copy.begin(),
                                                v_copy.end() - 1);
 
     EXPECT_EQ(*(v_copy.begin() + nth), *result);
+    std::cout << "N-th: " << nth << "\n";
+    std::cout << v_copy << "\n";
 }
 
 TEST(LinearTimeSelectionTest, FindMedianCase) {
@@ -40,7 +43,17 @@ TEST(LinearTimeSelectionTest, FindMedianCase) {
 
     auto median =
         algorithm::FindMedian<std::vector<int64_t>, std::less<int64_t>>(
-            v.begin(), v.end());
+            v.begin(), v.end() - 1);
 
     EXPECT_EQ(*median, 3);
+}
+TEST(LinearTimeSelectionTest, PartitionCase) {
+    std::vector<int64_t> v = {5, 3, 1, 4, 2};
+
+    auto right_iter = algorithm::PartitionUsingGivePivot<std::vector<int64_t>,
+                                                         std::less<int64_t>>(
+        v.begin(), v.end() - 1, *(v.begin() + 3));
+
+    EXPECT_EQ(*right_iter, 4);
+    EXPECT_EQ(*(v.begin()), 2);
 }

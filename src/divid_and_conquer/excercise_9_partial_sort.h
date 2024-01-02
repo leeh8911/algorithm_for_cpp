@@ -20,7 +20,7 @@ namespace algorithm {
 template <typename Container,
           typename Compare = std::less<typename Container::value_type>>
 void PartialQuickSort(typename Container::iterator begin,
-                      typename Container::iterator last, size_t partial_size) {
+                      typename Container::iterator last, int64_t partial_size) {
     if (std::distance(begin, last) + 1 <= 1) {
         return;
     }
