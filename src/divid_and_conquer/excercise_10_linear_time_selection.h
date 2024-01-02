@@ -102,8 +102,8 @@ typename Container::iterator LinearTimeSelection(
 
     auto median_of_medians = medians.begin();
     if (medians.size() > 1) {
-        median_of_medians =
-            FindMedian<Container, Compare>(medians.begin(), medians.end());
+        median_of_medians = LinearTimeSelection<Container, Compare>(
+            medians.begin(), medians.end() - 1, medians.size() / 2);
     }
 
     auto partition_iter = PartitionUsingGivePivot<Container, Compare>(
