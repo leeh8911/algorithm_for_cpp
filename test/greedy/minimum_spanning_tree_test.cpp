@@ -34,17 +34,17 @@ TEST(MinimumSpanningTreeTest, SampleCase) {
 
     EXPECT_EQ(7, result.Edges().size());
 
-    // auto edges = result.Edges();
-    // std::sort(edges.begin(), edges.end(),
-    //           [](const algorithm::Edge& lhs, const algorithm::Edge& rhs) {
-    //               return lhs.weight > rhs.weight;
-    //           });
+    auto edges = result.Edges();
+    std::sort(edges.begin(), edges.end(),
+              [](const algorithm::Edge& lhs, const algorithm::Edge& rhs) {
+                  return lhs.weight > rhs.weight;
+              });
 
-    // EXPECT_EQ("3-7(3)", edges[0].ToString());
-    // EXPECT_EQ("8-5(3)", edges[1].ToString());
-    // EXPECT_EQ("2-1(2)", edges[2].ToString());
-    // EXPECT_EQ("3-4(2)", edges[3].ToString());
-    // EXPECT_EQ("5-4(2)", edges[4].ToString());
-    // EXPECT_EQ("2-4(1)", edges[5].ToString());
-    // EXPECT_EQ("8-6(1)", edges[6].ToString());
+    EXPECT_EQ("3-7(3)", edges[0].ToString());
+    EXPECT_EQ("5-8(3)", edges[1].ToString());
+    EXPECT_EQ("4-5(2)", edges[2].ToString());
+    EXPECT_EQ("1-2(2)", edges[3].ToString());
+    EXPECT_EQ("3-4(2)", edges[4].ToString());
+    EXPECT_EQ("2-4(1)", edges[5].ToString());
+    EXPECT_EQ("6-8(1)", edges[6].ToString());
 }
