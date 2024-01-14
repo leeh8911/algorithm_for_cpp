@@ -12,25 +12,22 @@
 #ifndef SRC_GREEDY_COLORING_GRAPH_H_
 #define SRC_GREEDY_COLORING_GRAPH_H_
 
+#include <memory>
 #include <vector>
 
 namespace algorithm {
-template <typename Color>
-class ColoringGraph {
+template <typename T>
+struct Edge {
+    uint64_t from;
+    uint64_t to;
+    T weight;
+};
+
+template <typename T>
+class Graph {
  public:
-    ColoringGraph() = default;
-
-    void AddEdge(int64_t from, int64_t to) {}
-
-    std::vector<Color> Nodes() const { return nodes; };
-
  private:
-    struct Edge {
-        std::pair<int64_t, Color> from;
-        std::pair<int64_t, Color> to;
-    };
-    std::vector<Edge> edges{};
-    std::vector<Color> nodes{};
+    std::vector<Edge> m_edges{};
 };
 }  // namespace algorithm
 
