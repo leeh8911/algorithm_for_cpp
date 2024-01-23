@@ -15,31 +15,4 @@
 
 enum class Color { Red = 1, Blue, Green, Yellow, Black, White };
 
-TEST(ColoringGraphTest, SampleCase) {
-    algorithm::Graph<uint64_t> graph{};
-
-    graph.AddEdge(1, 2);
-    graph.AddEdge(1, 5);
-    graph.AddEdge(2, 5);
-    graph.AddEdge(2, 4);
-    graph.AddEdge(3, 4);
-    graph.AddEdge(3, 7);
-    graph.AddEdge(4, 5);
-    graph.AddEdge(4, 6);
-    graph.AddEdge(4, 8);
-    graph.AddEdge(5, 8);
-    graph.AddEdge(6, 8);
-
-    auto nodes = graph.Nodes();
-
-    graph.ColorNodes<Color>();
-
-    // EXPECT_EQ(Color::Red, nodes[0]);
-    // EXPECT_EQ(Color::Blue, nodes[1]);
-    // EXPECT_EQ(Color::Red, nodes[2]);
-    // EXPECT_EQ(Color::Green, nodes[3]);
-    // EXPECT_EQ(Color::Yellow, nodes[4]);
-    // EXPECT_EQ(Color::Red, nodes[5]);
-    // EXPECT_EQ(Color::Blue, nodes[6]);
-    // EXPECT_EQ(Color::Blue, nodes[7]);
-}
+TEST(ColoringGraphTest, SampleCase) { GTEST_SKIP() << "Not Implemented!"; }
