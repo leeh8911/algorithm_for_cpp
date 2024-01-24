@@ -18,39 +18,39 @@
 TEST(GraphTest, ReturnAllEdges) {
     algorithm::Graph<int32_t> graph(4);
 
-    graph.AddEdge({0, 1, 0});
     graph.AddEdge({1, 2, 0});
     graph.AddEdge({2, 3, 0});
-    graph.AddEdge({3, 0, 0});
+    graph.AddEdge({3, 4, 0});
+    graph.AddEdge({4, 1, 0});
 
     auto edges = graph.Edges();
 
     EXPECT_EQ(4, edges.size());
 
     EXPECT_TRUE(std::find(edges.begin(), edges.end(),
-                          algorithm::Edge{0, 1, 0}) != edges.end());
-    EXPECT_TRUE(std::find(edges.begin(), edges.end(),
                           algorithm::Edge{1, 2, 0}) != edges.end());
     EXPECT_TRUE(std::find(edges.begin(), edges.end(),
                           algorithm::Edge{2, 3, 0}) != edges.end());
     EXPECT_TRUE(std::find(edges.begin(), edges.end(),
-                          algorithm::Edge{3, 0, 0}) != edges.end());
+                          algorithm::Edge{3, 4, 0}) != edges.end());
+    EXPECT_TRUE(std::find(edges.begin(), edges.end(),
+                          algorithm::Edge{4, 1, 0}) != edges.end());
 }
 TEST(GraphTest, SpecificEdges) {
     algorithm::Graph<int32_t> graph(4);
 
-    graph.AddEdge({0, 1, 0});
     graph.AddEdge({1, 2, 0});
     graph.AddEdge({2, 3, 0});
-    graph.AddEdge({3, 0, 0});
-    graph.AddEdge({2, 0, 0});
+    graph.AddEdge({3, 4, 0});
+    graph.AddEdge({4, 1, 0});
+    graph.AddEdge({3, 1, 0});
 
-    auto edges = graph.Edges(2);
+    auto edges = graph.Edges(3);
 
     EXPECT_EQ(2, edges.size());
 
     EXPECT_TRUE(std::find(edges.begin(), edges.end(),
-                          algorithm::Edge{2, 3, 0}) != edges.end());
+                          algorithm::Edge{3, 4, 0}) != edges.end());
     EXPECT_TRUE(std::find(edges.begin(), edges.end(),
-                          algorithm::Edge{2, 0, 0}) != edges.end());
+                          algorithm::Edge{3, 1, 0}) != edges.end());
 }

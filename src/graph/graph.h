@@ -46,8 +46,8 @@ class Graph {
     Graph(size_t size_vertices) : m_size_vertices(size_vertices) {}
 
     void AddEdge(const Edge<T>& edge) {
-        if (((0 <= edge.from) && (edge.from < m_size_vertices)) &&
-            ((0 <= edge.to) && (edge.to < m_size_vertices))) {
+        if (((1 <= edge.from) && (edge.from <= m_size_vertices)) &&
+            ((1 <= edge.to) && (edge.to <= m_size_vertices))) {
             m_edges.emplace_back(edge);
         } else {
             assert(false);

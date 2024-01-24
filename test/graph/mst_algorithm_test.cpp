@@ -48,7 +48,9 @@ class MstAlgorithmTest : public testing::Test {
 };
 
 TEST_F(MstAlgorithmTest, PrimAlgorithmCase) {
-    auto result = algorithm::PrimAlgorithm<WeightType>(graph, 0);
+    auto result = algorithm::PrimAlgorithm<WeightType>(graph, 1);
 
-    EXPECT_EQ(1, 1);
+    decltype(result) expected = {1, 2, 4, 3, 5, 7, 8, 6};
+
+    EXPECT_EQ(result, expected);
 }

@@ -13,6 +13,7 @@
 #define SRC_GRAPH_MST_ALGORITHM_H_
 
 #include <functional>
+#include <iostream>
 #include <limits>
 #include <queue>
 #include <unordered_set>
@@ -53,7 +54,7 @@ std::vector<typename Edge<T>::Node> PrimAlgorithm(
         if (!visit.contains(current_vertex.id)) {
             result.emplace_back(current_vertex.id);
 
-            for (auto& e : graph.Edges()) {
+            for (auto& e : graph.Edges(current_vertex.id)) {
                 auto neighbor = e.to;
                 auto new_distance = e.weight;
 
