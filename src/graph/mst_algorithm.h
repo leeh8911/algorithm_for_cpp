@@ -70,6 +70,59 @@ std::vector<typename Edge<T>::Node> PrimAlgorithm(
 
     return result;
 }
+
+template <typename T>
+std::vector<typename Edge<T>::Node> DijkstraAlgorithm(
+    const Graph<T>& graph, typename Edge<T>::Node start,
+    typename Edge<T>::Node end) {
+    std::vector<typename Edge<T>::Node> mst{};
+
+    std::priority_queue<Label<T>, LabelList<T>, std::greater<Label<T>>> heap{};
+    std::vector<T> distances(graph.SizeVertices(),
+                             std::numeric_limits<T>::max());
+    std::vector<typename Edge<T>::Node> parent(graph.SizeVertices());
+    std::unordered_set<typename Edge<T>::Node> visit;
+
+    heap.emplace(Label<T>{start, 0});
+
+    while ((!heap.empty())) {
+        auto current_vertex = heap.top();
+        heap.pop();
+
+        if (!visit.contains(current_vertex.id)) {
+            mst.emplace_back(current_vertex.id);
+
+            for (auto& e : graph.Edges(current_vertex.id)) {
+                auto neighbor = e.to;
+                auto new_distance = current_vertex.distance + e.weight;
+
+                if (new_distance < distances[neighbor]) {
+                    heap.emplace(Label<T>{neighbor, new_distance});
+
+                    parent[neighbor] = current_vertex.id;
+                    distances[neighbor] = new_distance;
+                }
+            }
+
+            visit.insert(current_vertex.id);
+        }
+
+        if (current_vertex.id == end) {
+            break;
+        }
+    }
+    std::vector<typename Edge<T>::Node> result{};
+    auto current_vertex = end;
+
+    while (current_vertex != start) {
+        result.emplace_back(current_vertex);
+        current_vertex = parent[current_vertex];
+    }
+    result.emplace_back(start);
+    std::reverse(result.begin(), result.end());
+
+    return result;
+}
 }  // namespace algorithm
 
 #endif  // SRC_GRAPH_MST_ALGORITHM_H_

@@ -54,3 +54,10 @@ TEST_F(MstAlgorithmTest, PrimAlgorithmCase) {
 
     EXPECT_EQ(result, expected);
 }
+TEST_F(MstAlgorithmTest, DijkstraAlgorithmCase) {
+    auto result = algorithm::DijkstraAlgorithm<WeightType>(graph, 1, 6);
+
+    decltype(result) expected = {1, 2, 4, 6};
+
+    EXPECT_EQ(result, expected);
+}
