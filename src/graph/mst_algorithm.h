@@ -123,6 +123,28 @@ std::vector<typename Edge<T>::Node> DijkstraAlgorithm(
 
     return result;
 }
+
+template <typename T>
+std::vector<T> BellmanFordAlgorithm(const Graph<T>& graph,
+                                    typename Edge<T>::Node start) {
+    constexpr T kMaxValue = std::numeric_limits<T>::max();
+    std::vector<T> distances(graph.SizeVertices(), kMaxValue);
+    distances[start] = 0;
+
+    for (int16_t i = 0; i < graph.SizeVertices() - 1; ++i) {
+        for (const auto& edge : graph.Edges()) {
+            if (distances[edge.from] == kMaxValue) {
+                continue;
+            }
+
+            if (distances[edge.to] > distances[edge.from] + edge.weight) {
+                distances[edge.to] = distances[edge.from] + edge.weight;
+            }
+        }
+    }
+    return distances;
+}
+
 }  // namespace algorithm
 
 #endif  // SRC_GRAPH_MST_ALGORITHM_H_

@@ -54,6 +54,11 @@ class Graph {
         }
     }
 
+    void Clear() {
+        m_edges.clear();
+        m_size_vertices = 0;
+    }
+
     size_t& SizeVertices() { return m_size_vertices; }
     const size_t& SizeVertices() const { return m_size_vertices; }
 

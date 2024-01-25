@@ -41,7 +41,7 @@ class MstAlgorithmTest : public testing::Test {
             }
         }
     }
-    void TearDown() override {}
+    void TearDown() override { graph.Clear(); }
 
     using WeightType = uint64_t;
     algorithm::Graph<WeightType> graph{};
@@ -60,4 +60,11 @@ TEST_F(MstAlgorithmTest, DijkstraAlgorithmCase) {
     decltype(result) expected = {1, 2, 4, 6};
 
     EXPECT_EQ(result, expected);
+}
+TEST_F(MstAlgorithmTest, BellmanFordAlgorithmCase) {
+    auto result = algorithm::BellmanFordAlgorithm<WeightType>(graph, 1);
+
+    decltype(result) expected = {0, 2, 5, 3, 3, 7, 8, 6};
+
+    EXPECT_EQ(expected, result);
 }
